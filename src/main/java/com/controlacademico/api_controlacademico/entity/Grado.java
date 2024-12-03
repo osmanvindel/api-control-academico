@@ -1,8 +1,4 @@
 package com.controlacademico.api_controlacademico.entity;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,13 +11,12 @@ public class Grado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "grado_id")
-    private int id;
+    private Integer id;
     @Column(name = "grado_codigo")
     private String codigo;
     @Column(name = "grado_nombre")
     private String nombre;
     @Column(name = "grado_capacidad_alumnos")
-    //private int capacidad;
     private Integer capacidad;
     @Column(name = "grado_cantidad_alumnos")
     private int cantidad;

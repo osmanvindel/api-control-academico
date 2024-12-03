@@ -18,11 +18,4 @@ public class PadreFamilia {
     private Persona persona;
     @OneToMany(mappedBy = "padreFamilia", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Alumno> alumnos;
-
-//    //Establecer relacion bidireccional explicitamente
-//    public void agregarAlumno(List<Alumno> alumnos) {
-//        for (Alumno alumno : alumnos) {
-//            alumno.setPadreFamilia(this);
-//        }
-//    }
 }

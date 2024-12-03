@@ -17,11 +17,17 @@ public class Periodo {
     @Column(name = "periodo_codigo")
     private String codigo;
     @Column(name = "periodo_fecha_inicio")
-    private LocalDate fecha_inicio;
+    private LocalDate fechaInicio;
     @Column(name = "periodo_fecha_fin")
-    private LocalDate fecha_fin;
+    private LocalDate fechaFin;
     @Column(name = "periodo_abierto")
-    private byte abierto;
+    private Byte abierto;
     @OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Calificacion> calificaciones;
+
+    public boolean vacio() {
+        return this.codigo == null
+                && this.fechaInicio == null
+                && this.fechaFin ==  null;
+    }
 }

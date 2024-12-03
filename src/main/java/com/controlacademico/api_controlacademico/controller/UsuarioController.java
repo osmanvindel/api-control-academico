@@ -38,7 +38,7 @@ public class UsuarioController {
             usuarioService.editarUsuario(id, usuario);
             return new ResponseEntity<>("Editado correctamente", HttpStatus.OK);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

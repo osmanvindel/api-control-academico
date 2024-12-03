@@ -1,12 +1,10 @@
 package com.controlacademico.api_controlacademico.service;
 
-import com.controlacademico.api_controlacademico.entity.Rol;
 import com.controlacademico.api_controlacademico.entity.Usuario;
 import com.controlacademico.api_controlacademico.repository.RolRepository;
 import com.controlacademico.api_controlacademico.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,16 +36,21 @@ public class UsuarioService {
         //Correo no valido
         if (!usuario.getCorreo().contains("@")) throw new RuntimeException("Correo no valido");
 
+        if(usuario.getRol() == null)
+            throw new RuntimeException("Debes de asignar un rol");
+
+        //Encriptar password
+
         usuarioRepository.save(usuario);
     }
 
     //Editar
     public void editarUsuario(int id, Usuario usuario) {
+        if (usuario.vacio()) //Verificar si el JSON no esta vacio
+            throw new RuntimeException("No se aceptan objetos vacios");
+
         //Verificar existencia del usuario a editar
         Usuario usuarioModificado = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("El usuario no existe"));
-
-        if (usuario.getNombre() == null && usuario.getCorreo() == null) //Verificar si el JSON no esta vacio
-            throw new RuntimeException("No se aceptan objetos vacios");
 
         if (usuarioModificado.getActivo().equals((byte) 0)) //El usuario esta "elimiando"
             throw new RuntimeException("Usuario no disponible");
@@ -62,6 +65,9 @@ public class UsuarioService {
             validarCorreo(usuario.getCorreo());
             usuarioModificado.setCorreo(usuario.getCorreo());
         }
+
+        //Editar la password
+
         if (usuario.getRol() != null) {
             //El rol a asignar no existe
             if (rolRepository.existsById(usuario.getRol().getId()))
@@ -78,7 +84,7 @@ public class UsuarioService {
 
     //Buscar (Uno)
     public Optional<Usuario> obtenerUsuario(int id) {
-        return usuarioRepository.findByIdAndActivo(id, (byte) 1);
+        return usuarioRepository.findByIdAndActivo(id, (byte) 1); //Usuario especifico no eliminado
     }
 
     //Eliminar (eliminacion logica)
