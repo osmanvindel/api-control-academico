@@ -25,7 +25,7 @@ public class Usuario {
     @JoinColumn(name = "fk_rol_id", referencedColumnName = "rol_id")
     private Rol rol;
     @Column(name = "usuario_activo")
-    private Byte activo;
+    private Byte activo = 1;
 
     public boolean vacio() {
         return this.nombre == null

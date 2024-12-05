@@ -1,4 +1,6 @@
 package com.controlacademico.api_controlacademico.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,12 +25,14 @@ public class Grado {
     @Column(name = "grado_descripcion")
     private String descripcion;
     @Column(name = "grado_borrado")
-    private Byte borrado;
+    private Byte borrado = 0;
     @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Seccion> secciones;
     @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Alumno> alumnos;
     @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JsonBackReference
+    //@JsonIgnoreProperties
     private List<Asignatura> asignaturas;
 
     public boolean vacio() {

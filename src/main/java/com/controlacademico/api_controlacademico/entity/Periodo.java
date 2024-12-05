@@ -21,7 +21,7 @@ public class Periodo {
     @Column(name = "periodo_fecha_fin")
     private LocalDate fechaFin;
     @Column(name = "periodo_abierto")
-    private Byte abierto;
+    private Byte abierto = 1;
     @OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Calificacion> calificaciones;
 

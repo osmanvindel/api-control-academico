@@ -27,7 +27,7 @@ public class AsignaturaService {
         if (asignaturaRepository.existsByCodigo(asignatura.getCodigo())) //Codigo repetido
             throw new RuntimeException("Ya existe una asignatura con este codigo, prueba con otro");
         if (asignatura.getGrado() == null) //No se especifica el grado
-            throw new RuntimeException("Debes de asignar la asignatura a un grado");
+            throw new RuntimeException("Debes de asignar a la asignatura a un grado");
         asignaturaRepository.save(asignatura);
     }
 
