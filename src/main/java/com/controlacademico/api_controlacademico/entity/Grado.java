@@ -1,5 +1,7 @@
 package com.controlacademico.api_controlacademico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,13 +27,15 @@ public class Grado {
     private String descripcion;
     @Column(name = "grado_borrado")
     private Byte borrado = 0;
-    @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Seccion> secciones;
-    @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Alumno> alumnos;
-    @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "grado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@JsonBackReference
-    //@JsonIgnoreProperties
+    @JsonIgnore
     private List<Asignatura> asignaturas;
 
     public boolean vacio() {

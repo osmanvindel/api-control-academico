@@ -1,5 +1,6 @@
 package com.controlacademico.api_controlacademico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,7 +17,8 @@ public class PadreFamilia {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_persona_id")
     private Persona persona;
-    @OneToMany(mappedBy = "padreFamilia", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "padreFamilia", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Alumno> alumnos;
     @Column(name = "padre_familia_activo")
     private Byte activo = 1;

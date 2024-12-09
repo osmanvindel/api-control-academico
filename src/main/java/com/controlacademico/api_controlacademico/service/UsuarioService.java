@@ -6,6 +6,7 @@ import com.controlacademico.api_controlacademico.repository.UsuarioRepository;
 import com.controlacademico.api_controlacademico.validations.Validaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,10 @@ import java.util.Optional;
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final RolRepository rolRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository, RolRepository rolRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository, RolRepository rolRepository ) {
         this.usuarioRepository = usuarioRepository;
         this.rolRepository = rolRepository;
     }
@@ -40,7 +42,10 @@ public class UsuarioService {
         if (usuario.getRol() == null)
             throw new RuntimeException("Debes de asignar un rol");
 
+        //Validar password
+        Validaciones.validarPassword(usuario.getPassword());
         //Encriptar password
+        usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
 
         usuarioRepository.save(usuario);
     }
@@ -70,6 +75,10 @@ public class UsuarioService {
         }
 
         //Editar la password
+        if(usuario.getPassword() != null) {
+            Validaciones.validarPassword(usuario.getPassword());
+            usuarioModificado.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
+        }
 
         if (usuario.getRol() != null) {
             //El rol a asignar no existe

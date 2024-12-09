@@ -38,13 +38,18 @@ public class Validaciones {
         }
     }
 
-    public static void ValidarFecha(String fecha) {
+    public static void validarFecha(String fecha) {
         if (!fecha.matches("^(\\d{4})-(\\d{2})-(\\d{2})$"))
             throw new RuntimeException("La fecha tiene que tener un formato de: año-mes-dia");
     }
 
-    public static void ValidarFechaHora(String fecha) {
+    public static void validarFechaHora(String fecha) {
         if (!fecha.matches("\\\\d{4}-\\\\d{2}-\\\\d{2}T\\\\d{2}:\\\\d{2}:\\\\d{2}$"))
             throw new RuntimeException("La fecha tiene que tener un formato de: año-mes-dia-horas:min:seg");
+    }
+
+    public static void validarPassword(String password) {
+        if(!password.matches("^[A-Za-z\\d]{8,}$"))
+            throw new RuntimeException("La contraseña debe de tener 8 caracteres minimos (letras y numero");
     }
 }

@@ -1,5 +1,7 @@
 package com.controlacademico.api_controlacademico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,17 +24,12 @@ public class Matricula {
     private String comentarios;
     @Column(name = "matricula_abierta")
     private Byte abierta = 1;
-    @OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Alumno> alumnos;
-    @OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Pago> pagos;
-
-    //Establecer relacion bidireccional explicitamente
-//    public void agregarAlumno(List<Alumno> alumnos) {
-//        for (Alumno alumno : alumnos) {
-//            alumno.setMatricula(this);
-//        }
-//    }
 
     public boolean vacio() {
         return this.fecha == null

@@ -23,7 +23,7 @@ public class MatriculaService {
     public void crearMatricula(Matricula matricula) {
         if (matricula.vacio()) //JSON vacio
             throw new RuntimeException("No se aceptan objetos vacios");
-        Validaciones.ValidarFecha(matricula.getFecha().toString());
+        Validaciones.validarFecha(matricula.getFecha().toString());
         evaluarPrecio(matricula.getPrecio());
         matriculaRepository.save(matricula);
     }

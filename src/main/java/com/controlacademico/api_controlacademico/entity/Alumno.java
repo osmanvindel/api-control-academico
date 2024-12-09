@@ -1,5 +1,6 @@
 package com.controlacademico.api_controlacademico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
