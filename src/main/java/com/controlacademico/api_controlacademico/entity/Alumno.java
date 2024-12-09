@@ -31,4 +31,6 @@ public class Alumno {
     private List<Asistencia> asistencias;
     @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Calificacion> calificaciones;
+    @Column(name = "alumno_activo")
+    private Byte activo = 1;
 }

@@ -18,4 +18,6 @@ public class Maestro {
     private Persona persona;
     @OneToMany(mappedBy = "maestro", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Asistencia> asistencias;
+    @Column(name = "maestro_activo")
+    private Byte activo = 1;
 }

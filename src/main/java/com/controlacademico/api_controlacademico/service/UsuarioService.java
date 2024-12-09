@@ -3,6 +3,7 @@ package com.controlacademico.api_controlacademico.service;
 import com.controlacademico.api_controlacademico.entity.Usuario;
 import com.controlacademico.api_controlacademico.repository.RolRepository;
 import com.controlacademico.api_controlacademico.repository.UsuarioRepository;
+import com.controlacademico.api_controlacademico.validations.Validaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +35,9 @@ public class UsuarioService {
             throw new RuntimeException("Correo en uso, prueba con otro");
 
         //Correo no valido
-        if (!usuario.getCorreo().contains("@")) throw new RuntimeException("Correo no valido");
+        Validaciones.validarCorreo(usuario.getCorreo());
 
-        if(usuario.getRol() == null)
+        if (usuario.getRol() == null)
             throw new RuntimeException("Debes de asignar un rol");
 
         //Encriptar password
@@ -62,7 +63,9 @@ public class UsuarioService {
             usuarioModificado.setNombre(usuario.getNombre());
         }
         if (usuario.getCorreo() != null) {
-            validarCorreo(usuario.getCorreo());
+            if (usuarioRepository.existsByCorreo(usuario.getCorreo()))
+                throw new RuntimeException("Correo en uso, prueba con otro");
+            Validaciones.validarCorreo(usuario.getCorreo());
             usuarioModificado.setCorreo(usuario.getCorreo());
         }
 
@@ -94,14 +97,5 @@ public class UsuarioService {
             throw new RuntimeException("Usuario no disponible");
         usuario.setActivo((byte) 0);
         usuarioRepository.save(usuario);
-    }
-
-    private void validarCorreo(String correo) {
-        //El nuevo correo ya le pertenece a otro usuario
-        if (usuarioRepository.existsByCorreo(correo))
-            throw new RuntimeException("Correo en uso, prueba con otro");
-        //Correo no valido
-        if (correo.contains("@"))
-            throw new RuntimeException("El correo no es valido");
     }
 }

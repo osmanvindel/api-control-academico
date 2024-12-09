@@ -24,9 +24,9 @@ public class PeriodoController {
     @PostMapping("/periodo")
     public ResponseEntity<String> crearPeriodo(@RequestBody Periodo periodo) {
         try {
-         periodoService.crearPeriodo(periodo);
+            periodoService.crearPeriodo(periodo);
             return new ResponseEntity<>("Creado correctamente", HttpStatus.CREATED);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -37,20 +37,20 @@ public class PeriodoController {
         try {
             periodoService.editarPeriodo(id, periodo);
             return new ResponseEntity<>("Editado correctamente", HttpStatus.OK);
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
     //Buscar (Todos)
     @GetMapping("/periodos")
-    public List<Periodo> obtenerPeriodos(){
+    public List<Periodo> obtenerPeriodos() {
         return periodoService.obtenerPeriodos();
     }
 
     //Buscar (Uno)
     @GetMapping("/periodo/{id}")
-    public Optional<Periodo> obtenerPeriodo(@PathVariable int id){
+    public Optional<Periodo> obtenerPeriodo(@PathVariable int id) {
         return periodoService.obtenerPeriodo(id);
     }
 

@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface PeriodoRepository extends JpaRepository<Periodo, Integer> {
     boolean existsByCodigo(String codigo);
+
     List<Periodo> findByAbierto(byte abierto);
+
     Optional<Periodo> findByIdAndAbierto(int id, byte abierto);
 }

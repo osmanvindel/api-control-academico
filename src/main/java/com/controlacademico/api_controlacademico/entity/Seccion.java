@@ -1,6 +1,5 @@
 package com.controlacademico.api_controlacademico.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,7 +9,7 @@ import lombok.Data;
 public class Seccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="seccion_id")
+    @Column(name = "seccion_id")
     private int id;
     @Column(name = "seccion_numero")
     private int numero;

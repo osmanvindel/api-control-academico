@@ -28,7 +28,7 @@ public class ObservacionService {
             throw new RuntimeException("No se aceptan objetos vacios");
 
         Observacion observacionModificada = observacionRepository.findById(id).orElseThrow(() -> new RuntimeException("La observacion a editar no existe"));
-        
+
         observacionModificada.setComentario(observacion.getComentario());
         observacionRepository.save(observacionModificada);
     }

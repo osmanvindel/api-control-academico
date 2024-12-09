@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "roles_operaciones")
 public class RolesOperaciones {
-//    @Id
+    //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "roles_operaciones_id")
 //    private int id;

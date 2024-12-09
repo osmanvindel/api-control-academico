@@ -11,13 +11,13 @@ public class Direccion {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //El campo clave es autoincremental
     @Column(name = "direccion_id")
     private int id;
-    @Column(name="direccion_departamento")
+    @Column(name = "direccion_departamento")
     private String departamento;
-    @Column(name="direccion_municipio")
+    @Column(name = "direccion_municipio")
     private String municipio;
-    @Column(name="direccion_barrio_colonia")
-    private String barrio_colonia;
-    @Column(name="direccion_referencia")
+    @Column(name = "direccion_barrio_colonia")
+    private String barrioColonia;
+    @Column(name = "direccion_referencia")
     private String referencia;
     //@OneToOne(mappedBy = "fk_direccion_id")
     //private Persona presona;

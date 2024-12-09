@@ -20,9 +20,8 @@ public class GradoService {
     //Crear
     public void crearGrado(Grado grado) {
         //Objeto vacio
-        if (grado.vacio()) {
+        if (grado.vacio())
             throw new RuntimeException("No se aceptan objetos vacios");
-        }
         //Codigo de grado repetido
         if (gradoRepository.existsByCodigo(grado.getCodigo()))
             throw new RuntimeException("Ya existe un grado con este codigo, prueba otro");
@@ -40,9 +39,8 @@ public class GradoService {
         Grado gradoModificado = gradoRepository.findById(id).orElseThrow(() -> new RuntimeException("El grado no existe"));
 
         //JSON vacio
-        if (grado.vacio()) {
+        if (grado.vacio())
             throw new RuntimeException("No se aceptan objetos vacios");
-        }
 
         if (gradoModificado.getBorrado().equals((byte) 1)) //El grado esta "eliminado"
             throw new RuntimeException("Grado no disponible");

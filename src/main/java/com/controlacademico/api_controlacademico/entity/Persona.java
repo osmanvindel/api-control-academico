@@ -1,6 +1,5 @@
 package com.controlacademico.api_controlacademico.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -32,11 +31,11 @@ public class Persona {
     @JoinColumn(name = "fk_direccion_id")
     private Direccion direccion;
 
-    //Establecer relacion bidireccional explicitamente
-    public void agregarTelefono(List<Telefono> telefonos) {
-        for (Telefono telefono : telefonos) {
-            telefono.setPersona(this);
-        }
+    public boolean vacio() {
+        return this.cedula == null
+                && this.nombre == null
+                && this.apellido == null
+                && this.correo == null;
     }
 }
 

@@ -1,11 +1,9 @@
 package com.controlacademico.api_controlacademico.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -17,7 +15,7 @@ public class Matricula {
     @Column(name = "matricula_id")
     private int id;
     @Column(name = "matricula_fecha")
-    private LocalDateTime fecha;
+    private LocalDate fecha;
     @Column(name = "matricula_precio")
     private Double precio;
     @Column(name = "matricula_comentarios")

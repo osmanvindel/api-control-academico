@@ -2,8 +2,13 @@ package com.controlacademico.api_controlacademico.service;
 
 import com.controlacademico.api_controlacademico.entity.Matricula;
 import com.controlacademico.api_controlacademico.repository.MatriculaRepository;
+import com.controlacademico.api_controlacademico.validations.Validaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MatriculaService {
@@ -18,6 +23,7 @@ public class MatriculaService {
     public void crearMatricula(Matricula matricula) {
         if (matricula.vacio()) //JSON vacio
             throw new RuntimeException("No se aceptan objetos vacios");
+        Validaciones.ValidarFecha(matricula.getFecha().toString());
         evaluarPrecio(matricula.getPrecio());
         matriculaRepository.save(matricula);
     }
@@ -44,7 +50,30 @@ public class MatriculaService {
         matriculaRepository.save(matriculaModificada);
     }
 
-    //Busqueda por fecha..?
+    //Buscar (Todos)
+    public List<Matricula> buscarMatriculas() {
+        return matriculaRepository.findAll();
+    }
+
+    //Buscar por fecha
+    public Optional<Matricula> buscarMatriculaPorFecha(LocalDate fecha) {
+        return matriculaRepository.findByFecha(fecha);
+    }
+
+    //Buscar antes de (todas las coincidencias)
+    public List<Matricula> buscarMatriculaAntesDe(LocalDate fecha) {
+        return matriculaRepository.findByFechaBefore(fecha);
+    }
+
+    //Buscar despues de (todas las coincidencias)
+    public List<Matricula> buscarMatriculaDespuesDe(LocalDate fecha) {
+        return matriculaRepository.findByFechaAfter(fecha);
+    }
+
+    //Buscar entre un rango (todas las coincidencias)
+    public List<Matricula> buscarMatriculasEntre(LocalDate fechaInicio, LocalDate fechaFin) {
+        return matriculaRepository.findByFechaBetween(fechaInicio, fechaFin);
+    }
 
     //Eliminar (eliminacion logica)
     public void cerrarMatricula(int id) {

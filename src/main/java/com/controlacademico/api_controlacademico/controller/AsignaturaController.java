@@ -44,13 +44,13 @@ public class AsignaturaController {
 
     //Buscar (Todos)
     @GetMapping("/asignaturas")
-    public List<Asignatura> obtenerAsignaturas(){
+    public List<Asignatura> obtenerAsignaturas() {
         return asignaturaService.obtenerAsignaturas();
     }
 
     //Buscar (Uno)
     @GetMapping("/asignatura/{id}")
-    public Optional<Asignatura> obtenerAsignatura(@PathVariable int id){
+    public Optional<Asignatura> obtenerAsignatura(@PathVariable int id) {
         return asignaturaService.obtenerAsignatura(id);
     }
 

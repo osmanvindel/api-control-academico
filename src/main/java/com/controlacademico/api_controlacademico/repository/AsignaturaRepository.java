@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface AsignaturaRepository extends JpaRepository<Asignatura, Integer> {
     boolean existsByCodigo(String codigo);
+
     List<Asignatura> findByDisponible(byte disponible);
+
     Optional<Asignatura> findByIdAndDisponible(int id, byte disponible);
 }

@@ -28,6 +28,6 @@ public class Periodo {
     public boolean vacio() {
         return this.codigo == null
                 && this.fechaInicio == null
-                && this.fechaFin ==  null;
+                && this.fechaFin == null;
     }
 }

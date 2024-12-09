@@ -8,7 +8,10 @@ import java.util.Optional;
 
 public interface GradoRepository extends JpaRepository<Grado, Integer> {
     boolean existsByCodigo(String codigo);
+
     boolean existsByNombre(String nombre);
+
     List<Grado> findByBorrado(byte borrado);
+
     Optional<Grado> findByIdAndBorrado(int id, byte borrado);
 }

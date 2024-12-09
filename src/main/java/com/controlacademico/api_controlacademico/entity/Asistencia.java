@@ -2,7 +2,6 @@ package com.controlacademico.api_controlacademico.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.type.descriptor.java.spi.MapEntryJavaType;
 
 import java.time.LocalDateTime;
 
@@ -24,4 +23,8 @@ public class Asistencia {
     @ManyToOne
     @JoinColumn(name = "fk_maestro_id", referencedColumnName = "maestro_id")
     private Maestro maestro;
+
+    public boolean vacio() {
+        return this.fecha == null && this.asignatura == null;
+    }
 }

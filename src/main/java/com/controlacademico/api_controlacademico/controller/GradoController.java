@@ -2,7 +2,6 @@ package com.controlacademico.api_controlacademico.controller;
 
 import com.controlacademico.api_controlacademico.entity.Grado;
 import com.controlacademico.api_controlacademico.service.GradoService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +34,7 @@ public class GradoController {
     //Editar
     @PatchMapping("/grado/{id}")
     public ResponseEntity<String> editarGrado(@PathVariable int id, @RequestBody Grado grado) {
-        try{
+        try {
             gradoService.editarGrado(id, grado);
             return new ResponseEntity<>("Editado correctamente", HttpStatus.OK);
         } catch (RuntimeException e) {
@@ -61,7 +60,7 @@ public class GradoController {
         try {
             gradoService.eliminarGrado(id);
             return new ResponseEntity<>("Eliminado correctamente", HttpStatus.OK);
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

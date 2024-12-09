@@ -1,9 +1,7 @@
 package com.controlacademico.api_controlacademico.controller;
 
 import com.controlacademico.api_controlacademico.entity.Observacion;
-import com.controlacademico.api_controlacademico.entity.Periodo;
 import com.controlacademico.api_controlacademico.service.ObservacionService;
-import com.controlacademico.api_controlacademico.service.PeriodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

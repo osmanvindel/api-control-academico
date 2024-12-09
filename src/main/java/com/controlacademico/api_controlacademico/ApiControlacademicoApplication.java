@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ApiControlacademicoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiControlacademicoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApiControlacademicoApplication.class, args);
+    }
 
 }

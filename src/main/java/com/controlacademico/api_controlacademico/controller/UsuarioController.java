@@ -44,13 +44,13 @@ public class UsuarioController {
 
     //Buscar (Todos)
     @GetMapping("/usuarios")
-    public List<Usuario> obtenerUsuarios(){
+    public List<Usuario> obtenerUsuarios() {
         return usuarioService.obtenerUsuarios();
     }
 
     //Buscar (Uno)
     @GetMapping("/usuario/{id}")
-    public Optional<Usuario> obtenerUsuario(@PathVariable int id){
+    public Optional<Usuario> obtenerUsuario(@PathVariable int id) {
         return usuarioService.obtenerUsuario(id);
     }
 

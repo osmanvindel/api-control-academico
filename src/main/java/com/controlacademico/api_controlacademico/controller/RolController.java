@@ -4,7 +4,6 @@ import com.controlacademico.api_controlacademico.entity.Rol;
 import com.controlacademico.api_controlacademico.service.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +51,6 @@ public class RolController {
     //Buscar (Uno)
     @GetMapping("/rol/{id}")
     public Optional<Rol> obtenerRol(@PathVariable int id) {
-            return rolService.obtenerRol(id);
+        return rolService.obtenerRol(id);
     }
 }
