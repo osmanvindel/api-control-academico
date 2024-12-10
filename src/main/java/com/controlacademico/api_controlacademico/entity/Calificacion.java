@@ -23,7 +23,12 @@ public class Calificacion {
     @JoinColumn(name = "fk_asignatura_id", referencedColumnName = "asignatura_id")
     private Asignatura asignatura;
     @Column(name = "calificacion_nota")
-    private double nota;
+    private Double nota;
     @Column(name = "calificacion_fecha")
     private LocalDateTime fecha;
+
+    public boolean vacio() {
+        return this.asignatura ==  null
+                && this.nota == null;
+    }
 }

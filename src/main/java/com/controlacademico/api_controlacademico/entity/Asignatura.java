@@ -1,5 +1,6 @@
 package com.controlacademico.api_controlacademico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -26,7 +27,8 @@ public class Asignatura {
     @JsonIgnoreProperties("asignaturas")
     @JoinColumn(name = "fk_grado_id", referencedColumnName = "grado_id")
     private Grado grado;
-    @OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Calificacion> calificaciones;
     @Column(name = "asignatura_disponible")
     private Byte disponible = 1;

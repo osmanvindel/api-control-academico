@@ -1,5 +1,6 @@
 package com.controlacademico.api_controlacademico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,7 +23,8 @@ public class Periodo {
     private LocalDate fechaFin;
     @Column(name = "periodo_abierto")
     private Byte abierto = 1;
-    @OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Calificacion> calificaciones;
 
     public boolean vacio() {

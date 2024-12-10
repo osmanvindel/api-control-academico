@@ -26,11 +26,14 @@ public class Alumno {
     @ManyToOne
     @JoinColumn(name = "fk_matricula_id", referencedColumnName = "matricula_id")
     private Matricula matricula;
-    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Observacion> observaciones;
-    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Asistencia> asistencias;
-    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Calificacion> calificaciones;
     @Column(name = "alumno_activo")
     private Byte activo = 1;
