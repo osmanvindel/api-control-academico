@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MatriculaRepository extends JpaRepository<Matricula, Integer> {
+    List<Matricula> findByAbierta(byte id);
+
     Optional<Matricula> findByFecha(LocalDate fecha);
 
     List<Matricula> findByFechaBefore(LocalDate fecha);

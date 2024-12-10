@@ -52,7 +52,7 @@ public class MatriculaService {
 
     //Buscar (Todos)
     public List<Matricula> buscarMatriculas() {
-        return matriculaRepository.findAll();
+        return matriculaRepository.findByAbierta((byte) 1);
     }
 
     //Buscar por fecha
